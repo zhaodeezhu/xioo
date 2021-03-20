@@ -1,0 +1,18 @@
+{
+  "watch": [
+    "*.js",
+    "*.ts",
+    "*.json"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ignore": [
+    "package.json",
+    "nodemon.json",
+    "public/*",
+    "node_modules/**/node_modules",
+    ".git",
+    "typings"
+  ]
+}

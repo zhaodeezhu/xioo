@@ -1,0 +1,24 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "type": "node",
+        "request": "launch",
+        "name": "Xioo",
+        // "program": "${workspaceFolder}/app/server/index.ts",
+        "args": ["${workspaceFolder}/app/server/index.ts"],
+        "runtimeArgs": [                // 运行参数，会在cli和启动文件中间添加
+          "--nolazy",
+          "-r",
+          "ts-node/register"          // 这里前文介绍过，要使用ts-node的register模块
+        ],
+        "sourceMaps": true,
+        "cwd": "${workspaceRoot}", 
+        "protocol": "inspector",
+        "console": "integratedTerminal"
+      }
+    ]
+  }

@@ -1,0 +1,83 @@
+{
+  "name": "xioo",
+  "version": "0.0.40",
+  "description": "xioo of project",
+  "main": "./build/index.js",
+  "dependencies": {
+    "@types/node-cron": "^2.0.3",
+    "@types/react": "^17.0.2",
+    "@types/react-dom": "^17.0.1",
+    "colors": "^1.4.0",
+    "debug": "^4.3.1",
+    "koa": "^2.13.0",
+    "koa-body": "^4.2.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-cors": "^0.0.16",
+    "koa-router": "^10.0.0",
+    "koa-static": "^5.0.0",
+    "mobx": "^6.0.4",
+    "mobx-react": "^7.0.5",
+    "mysql": "^2.18.1",
+    "node-cron": "^2.0.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-router": "^5.2.0",
+    "redis": "^3.0.2",
+    "socket.io": "^3.1.0",
+    "socket.io-redis": "^6.0.1"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^12.0.1",
+    "@commitlint/config-conventional": "^12.0.1",
+    "@types/debug": "^4.1.5",
+    "@types/koa": "^2.11.6",
+    "@types/koa-bodyparser": "^4.3.0",
+    "@types/koa-cors": "^0.0.0",
+    "@types/koa-router": "^7.4.1",
+    "@types/node": "^14.14.14",
+    "@types/redis": "^2.8.28",
+    "@types/socket.io": "^2.1.8",
+    "@types/typescript": "^2.0.0",
+    "cover-webpack-package": "^0.0.11",
+    "cz-conventional-changelog": "^3.3.0",
+    "git-cz": "^4.7.6",
+    "husky": "^5.1.3",
+    "koa-static": "^5.0.0",
+    "nodemon": "^2.0.6",
+    "standard-version": "^9.1.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "NODE_ENV=dev nodemon ./app/server/index.ts",
+    "commit": "git-cz",
+    "log": "standard-version"
+  },
+  "keywords": [
+    "zhaodeezhu",
+    "koa",
+    "node",
+    "server",
+    "socket",
+    "schedule"
+  ],
+  "author": "dee",
+  "repository": {
+    "type": "github",
+    "url": "https://github.com/zhaodeezhu/xioo"
+  },
+  "license": "ISC",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  }
+}

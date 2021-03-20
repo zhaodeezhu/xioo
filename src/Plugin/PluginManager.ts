@@ -1,0 +1,45 @@
+import App from '../App';
+import Plugin from './index';
+import * as path from 'path';
+
+class PluginManager extends Plugin {
+  constructor(app: App) {
+    super(app);
+    this.registerProjectPlugins();
+  }
+
+  /** 插件组 */
+  plugins: {[key: string]: any} = {};
+
+  /** 注册目录中的插件 */
+  registerProjectPlugins() {
+    let projectPlugins = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './server/plugins'));
+
+    let plugins = Object.values(projectPlugins);
+
+    this.registerPlugin(plugins);
+  }
+
+  /** 注册插件 */
+  registerPlugin(plugins: any) {
+    if(Array.isArray(plugins)) {
+      plugins.forEach(item => {
+        this.writePlugin(item);
+      });
+    } else {
+      this.writePlugin(plugins);
+    }
+  }
+
+  private writePlugin(PluginTarget) {
+    const pluginInstance = new PluginTarget(this.app);
+
+    pluginInstance.excute && pluginInstance.excute();
+    const pluginName = pluginInstance.constructor.name;
+
+    this.plugins[pluginName] = pluginInstance;
+  }
+}
+
+
+export = PluginManager;

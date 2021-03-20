@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon --files ./app/server/master.ts",
+    "start": "node ./scripts/index.js",
+    "process": "nodemon --files ./app/server/master.ts",
+    "front": "node ./scripts/front.js"
+  }
+}

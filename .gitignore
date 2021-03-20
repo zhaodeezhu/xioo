@@ -1,0 +1,17 @@
+/test/node_modules
+/node_modules
+# tsconfig.json
+# /build
+# /test
+# /src
+# /.vscode
+# /typings
+
+# /test/node_modules
+# /node_modules
+# tsconfig.json
+# # /build
+# /test
+# /src
+# /.vscode
+# /typings

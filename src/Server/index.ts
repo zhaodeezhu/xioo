@@ -29,7 +29,7 @@ type CostomCtx = Koa.DefaultContext & CostomC
 /** http服务 */
 class Server {
   /** koa的上下文 */
-  ctx: CostomCtx;
+  // ctx: CostomCtx;
   /** 服务 */
   server: http.Server;
   /** app */
@@ -37,10 +37,10 @@ class Server {
   constructor (app: App) {
     this.server = new http.Server(koa.callback());
     this.app = app;
-    this.use(async (ctx, next) => {
-      this.ctx = ctx as CostomCtx;
-      next && await next();
-    })
+    // this.use(async (ctx, next) => {
+    //   this.ctx = ctx as CostomCtx;
+    //   next && await next();
+    // })
   }
 
   /** 注册中间件 */

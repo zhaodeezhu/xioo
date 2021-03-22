@@ -50,7 +50,7 @@ class App {
   /** 第一个Redis连接 */
   redis: Redis;
   /** ctx上下文 */
-  ctx = this.server.ctx;
+  // ctx = this.server.ctx;
 
   static Get = Get;
   static Delete = Delete;

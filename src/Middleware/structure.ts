@@ -27,7 +27,7 @@ export function Middle(position: 'front' | 'end' = 'front', execute: boolean = t
       execute,
       params
     };
-    if(position = 'front') {
+    if(position === 'front') {
       middlewareFrontList.push(middleware);
     } else {
       middlewareEndList.push(middleware);

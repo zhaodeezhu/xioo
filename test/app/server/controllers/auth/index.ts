@@ -7,13 +7,22 @@ new RegExp(/[a-z]+\.less/)
 export default class Auth extends Controller {
   @Post('/login')
   async login() {
-    const { app, ctx } = this;
+    const { app, ctx, next } = this;
     let res = app.helper.dirTreePath(path.join(app.projectRoot, './app/pages'), [], [new RegExp(/[a-z]+\.less/)]);
 
     // this.app.service.User.login()
     // this.app.service.User.login();
     // this.app.service
     // console.red('我执行了')
+
+    console.log('我是之前的');
+    console.log(ctx.state['a'])
+
+    await next();
+
+    console.log('我是之后的');
+
+    console.log(ctx.state['a'])
     return {
       data: res,
       status: '0'

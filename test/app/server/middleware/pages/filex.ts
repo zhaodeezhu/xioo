@@ -11,4 +11,12 @@ export default class PageRedirect extends Middleware {
       ctx.redirect('/page/user')
     }
   }
+
+  @Middle('end')
+  async changeEnd() {
+    const { ctx } = this;
+
+    ctx.state['a'] = '1111';
+    console.log('我是中间件后值得');
+  }
 }

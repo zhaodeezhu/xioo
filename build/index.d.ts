@@ -151,6 +151,7 @@ declare module 'xioo' {
   export class Controller {
     app: App;
     ctx: any;
+    next: any;
     service: IService
   }
 

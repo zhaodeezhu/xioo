@@ -78,7 +78,7 @@ var Router = /** @class */ (function () {
                     url = path.join(basepath, route.path);
                 }
                 router[route.method](url, function (ctx, next) { return __awaiter(_this, void 0, void 0, function () {
-                    function ControllerPrototype() { this.ctx = null; }
+                    function ControllerPrototype() { this.ctx = null; this.next = null; }
                     var Controller, res;
                     return __generator(this, function (_a) {
                         switch (_a.label) {
@@ -86,18 +86,17 @@ var Router = /** @class */ (function () {
                                 ControllerPrototype.prototype = RouterController;
                                 Controller = new ControllerPrototype();
                                 Controller.ctx = ctx;
+                                Controller.next = next;
                                 return [4 /*yield*/, RouterController[route.controllerName].call(Controller)];
                             case 1:
                                 res = _a.sent();
-                                if (!!res) return [3 /*break*/, 3];
-                                return [4 /*yield*/, next()];
-                            case 2:
-                                _a.sent();
-                                return [3 /*break*/, 4];
-                            case 3:
-                                ctx.state.data = res;
-                                _a.label = 4;
-                            case 4: return [2 /*return*/];
+                                if (!res) {
+                                    // await next();
+                                }
+                                else {
+                                    ctx.state.data = res;
+                                }
+                                return [2 /*return*/];
                         }
                     });
                 }); });

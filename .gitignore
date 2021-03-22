@@ -1,7 +1,7 @@
 /test/node_modules
 /node_modules
 # tsconfig.json
-# /build
+/build
 # /test
 # /src
 # /.vscode
@@ -10,6 +10,8 @@
 # /test/node_modules
 # /node_modules
 # tsconfig.json
+# .commitlintrc.js
+# changelog.config.js
 # # /build
 # /test
 # /src

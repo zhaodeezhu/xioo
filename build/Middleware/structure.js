@@ -29,7 +29,7 @@ function Middle(position, execute, params) {
             execute: execute,
             params: params
         };
-        if (position = 'front') {
+        if (position === 'front') {
             exports.middlewareFrontList.push(middleware);
         }
         else {

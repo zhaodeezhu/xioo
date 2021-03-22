@@ -39,13 +39,14 @@ class Router {
           url = path.join(basepath, route.path);
         }
         router[route.method as IMethod](url, async (ctx, next) => {
-          function ControllerPrototype() { this.ctx = null; }
+          function ControllerPrototype() { this.ctx = null; this.next = null}
           ControllerPrototype.prototype = RouterController;
           const Controller = new ControllerPrototype();
           Controller.ctx = ctx;
+          Controller.next = next;
           let res = await RouterController[route.controllerName].call(Controller)
           if(!res) {
-            await next();
+            // await next();
           } else {
             ctx.state.data = res;
           }

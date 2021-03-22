@@ -8,7 +8,7 @@
  */
 import * as path from "path";
 import Config from '../Config'
-import Server from "../Server";
+import Server from "../Server/ServerManager";
 import Helper from "../Helper";
 import Router from "../Router";
 import Controller from "../Controller";

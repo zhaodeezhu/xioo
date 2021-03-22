@@ -41,7 +41,7 @@ module.exports = {
     },
     "feat": {
       "description": "一个新的特性",
-      "emoji": "🎸",
+      "emoji": "🚀",
       "value": "feat"
     },
     "fix": {

@@ -1,5 +1,7 @@
 import App from '../App';
 
+import { CostomCtx } from '../Declaration/server';
+
 /** 基础Controller，主要用于继承 */
 class Controller {
 
@@ -7,7 +9,7 @@ class Controller {
   app: App;
 
   /** 请求的上下文 */
-  ctx: any;
+  ctx: CostomCtx;
 
   constructor(app: App) {
     this.app = app;

@@ -11,24 +11,9 @@ import * as http from 'http';
 
 import printString from './print';
 
-type CostomC = {
-  state: {
-    /** 响应数据 */
-    data: any;
-  },
-  request: {
-    /** 请求体 */
-    body: any;
-  }
-}
+import { ICostomC, ICostomS, CostomCtx } from '../Declaration/server';
 
-interface ICostomS {
-  costom: string;
-}
-
-const koa = new Koa<ICostomS, CostomC>();
-
-type CostomCtx = Koa.DefaultContext & CostomC
+const koa = new Koa<ICostomS, ICostomC>();
 
 /** http服务 */
 class Server {

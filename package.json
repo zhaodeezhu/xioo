@@ -58,7 +58,8 @@
     "dev": "NODE_ENV=dev nodemon ./app/server/index.ts",
     "commit": "eslint src --ext .js,.ts && git-cz",
     "log": "standard-version",
-    "lint": "eslint src --ext .js,.ts"
+    "lint": "eslint src --ext .js,.ts",
+    "build": "eslint src --ext .js,.ts && tsc"
   },
   "keywords": [
     "zhaodeezhu",

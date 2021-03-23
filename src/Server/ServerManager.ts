@@ -22,7 +22,11 @@ type CostomC = {
   }
 }
 
-const koa = new Koa<{}, CostomC>();
+interface ICostomS {
+  costom: string;
+}
+
+const koa = new Koa<ICostomS, CostomC>();
 
 type CostomCtx = Koa.DefaultContext & CostomC
 

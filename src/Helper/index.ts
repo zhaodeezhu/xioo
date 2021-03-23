@@ -76,14 +76,14 @@ interface IHelper {
 
 abstract class Util {
   static getDirToFilePath(dirPath: string, exclude: string[] = []) {
-    let filePathMap: { [key: string]: string } = {};
+    const filePathMap: { [key: string]: string } = {};
     function getData(nd: string, frontFileName: string) {
       fs.readdirSync(nd).forEach(p => {
         if (fs.statSync(path.join(nd, p)).isDirectory()) {
           getData(path.join(nd, p), p)
         } else {
-          let f = p.split('.');
-          let key = path.join(frontFileName, f[0]);
+          const f = p.split('.');
+          const key = path.join(frontFileName, f[0]);
           filePathMap[key] = path.join(nd, p);
         }
       })
@@ -101,7 +101,7 @@ abstract class Util {
 
   static getDirToFileSource(dirPath: string) {
     const filePathMap = Util.getDirToFilePath(dirPath);
-    let sourceMap: { [key: string]: any } = {};
+    const sourceMap: { [key: string]: any } = {};
     Object.keys(filePathMap).forEach(p => {
       let Ob = require(filePathMap[p]);
       if (Ob['default']) {
@@ -114,9 +114,9 @@ abstract class Util {
 
   static dirTreePath(rootDir: string, exclude: string[] = [], includeFiles = [], include = [], isFirst = true) {
     // 定义所有的目录映射
-    let pathMap: { [key: string]: string } = {};
+    const pathMap: { [key: string]: string } = {};
     // 判断目录是否存在，不存在直接返回空对象{}
-    let isExists = fs.existsSync(rootDir);
+    const isExists = fs.existsSync(rootDir);
     if (!isExists) return {};
 
     function getData(nd: string, frontFileName: string, isFile = true) {
@@ -136,7 +136,7 @@ abstract class Util {
           getData(path.join(nd, p), path.join(nd, p), myFile);
         } else {
           if(includeFiles.length > 0) {
-            let fileName = includeFiles.find(filePath => {
+            const fileName = includeFiles.find(filePath => {
               // 如果是正则校验p文件是否是满足
               if(filePath instanceof RegExp) {
                 return filePath.test(p);
@@ -154,8 +154,8 @@ abstract class Util {
               return;
             }
           }
-          let f = p.split('.');
-          let key = path.join(frontFileName, f[0]);
+          const f = p.split('.');
+          const key = path.join(frontFileName, f[0]);
           pathMap[key] = path.join(nd, p);
         }
       })
@@ -168,7 +168,7 @@ abstract class Util {
 
   static dirTreeSource(rootDir: string, exclude: string[] = [], includeFiles = [], include = [], isFirst = true) {
     const pathMap = Util.dirTreePath(rootDir, exclude, includeFiles, include, isFirst);
-    let sourceMap: { [key: string]: any } = {};
+    const sourceMap: { [key: string]: any } = {};
     Object.keys(pathMap).forEach(p => {
       let Ob = require(pathMap[p]);
       if (Ob['default']) {
@@ -184,7 +184,7 @@ abstract class Util {
     // 正常配置的
     let res = Helper.getDirToFileSource(path.join(projectRoot, `./app/server/${dir}`));
     // 业务模块相关的
-    let modules = Helper.dirTreeSource(path.join(projectRoot, './app/pages'), [], [], [fileName], false);
+    const modules = Helper.dirTreeSource(path.join(projectRoot, './app/pages'), [], [], [fileName], false);
     // 将两种合并
     res = {
       ...res,
@@ -203,9 +203,9 @@ abstract class Util {
       const instanceService = new ServiceClass('');
       const serviceName = instanceService.constructor.name;
 
-      let interfaceCodeitem = ``;
+      // let interfaceCodeitem = ``;
       if(key.indexOf('pages') > -1) {
-        let servicePath = key.split('pages')[1];
+        const servicePath = key.split('pages')[1];
         importCode += `
           import ${serviceName} from '../app/pages${servicePath}';
         `
@@ -215,19 +215,18 @@ abstract class Util {
         `
       }
       
-
-      interfaceCodeitem = `
-        interface I${serviceName} {
-          ${interfaceCodeitem};
-        }\n
-      `
+      // interfaceCodeitem = `
+      //   interface I${serviceName} {
+      //     ${interfaceCodeitem};
+      //   }\n
+      // `
 
       classCode += `
         ${serviceName}: ${serviceName}
       `
     });
 
-    let declareFileCode = `
+    const declareFileCode = `
       import 'xioo';
       ${importCode}
       declare module 'xioo' {
@@ -251,9 +250,9 @@ class Helper extends Util implements IHelper {
   }
 
   getDirToFilePath(dirPath: string, exclude: string[] = []) {
-    let filePathMap: { [key: string]: string } = {};
+    const filePathMap: { [key: string]: string } = {};
 
-    let isExists = fs.existsSync(dirPath);
+    const isExists = fs.existsSync(dirPath);
     if (!isExists) return {}
 
     function getData(nd: string, frontFileName: string) {
@@ -261,8 +260,8 @@ class Helper extends Util implements IHelper {
         if (fs.statSync(path.join(nd, p)).isDirectory()) {
           getData(path.join(nd, p), path.join(nd, p))
         } else {
-          let f = p.split('.');
-          let key = path.join(frontFileName, f[0]);
+          const f = p.split('.');
+          const key = path.join(frontFileName, f[0]);
           filePathMap[key] = path.join(nd, p);
         }
       })
@@ -281,7 +280,7 @@ class Helper extends Util implements IHelper {
 
   getDirToFileSource(dirPath: string, exclude: string[] = []) {
     const filePathMap = this.getDirToFilePath(dirPath, exclude);
-    let sourceMap: { [key: string]: any } = {};
+    const sourceMap: { [key: string]: any } = {};
     Object.keys(filePathMap).forEach(p => {
       let Ob = require(filePathMap[p]);
       if (Ob['default']) {
@@ -314,9 +313,9 @@ class Helper extends Util implements IHelper {
    */
   dirTreePath(rootDir: string, exclude: string[] = [], includeFiles = [], include = [], isFirst = true) {
     // 定义所有的目录映射
-    let pathMap: { [key: string]: string } = {};
+    const pathMap: { [key: string]: string } = {};
     // 判断目录是否存在，不存在直接返回空对象{}
-    let isExists = fs.existsSync(rootDir);
+    const isExists = fs.existsSync(rootDir);
     if (!isExists) return {};
 
     function getData(nd: string, frontFileName: string, isFile = true) {
@@ -336,7 +335,7 @@ class Helper extends Util implements IHelper {
           getData(path.join(nd, p), path.join(nd, p), myFile);
         } else {
           if(includeFiles.length > 0) {
-            let fileName = includeFiles.find(filePath => {
+            const fileName = includeFiles.find(filePath => {
               // 如果是正则校验p文件是否是满足
               if(filePath instanceof RegExp) {
                 return filePath.test(p);
@@ -354,8 +353,8 @@ class Helper extends Util implements IHelper {
               return;
             }
           }
-          let f = p.split('.');
-          let key = path.join(frontFileName, f[0]);
+          const f = p.split('.');
+          const key = path.join(frontFileName, f[0]);
           pathMap[key] = path.join(nd, p);
         }
       })
@@ -374,7 +373,7 @@ class Helper extends Util implements IHelper {
    */
   dirTreeSource(rootDir: string, exclude: string[] = [], includeFiles = [], include = [], isFirst = true) {
     const pathMap = this.dirTreePath(rootDir, exclude, includeFiles, include, isFirst);
-    let sourceMap: { [key: string]: any } = {};
+    const sourceMap: { [key: string]: any } = {};
     Object.keys(pathMap).forEach(p => {
       let Ob = require(pathMap[p]);
       if (Ob['default']) {

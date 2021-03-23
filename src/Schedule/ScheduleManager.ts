@@ -46,8 +46,8 @@ class ScheduleManager extends Schedule {
     this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/schedule'));
     console.log(scheduleList)
     scheduleList.forEach(item => {
-      let {status, Constrcutor} = item;
-      let ScheduleController = new Constrcutor(this.app);
+      const {status, Constrcutor} = item;
+      const ScheduleController = new Constrcutor(this.app);
       taskList
       .filter(task => Constrcutor.prototype === task.target)
       .forEach(task => {

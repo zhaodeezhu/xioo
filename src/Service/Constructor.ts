@@ -47,11 +47,10 @@ class ServiceConstructor extends Service {
 
   /** 创建连接分组 */
   private createConnectGroup<T>(modelName: 'redis' | 'mysql') {
-    let ModelTypeGroup: T[];
     this[ModelLsit[modelName].group] = (this.app.config[modelName] as any[]).map(item => {
       return new ModelLsit[modelName].TypeModel(item)
     });
-    ModelTypeGroup = this[ModelLsit[modelName].group];
+    const ModelTypeGroup:T[] = this[ModelLsit[modelName].group];
     if(ModelTypeGroup.length > 0) {
       this[modelName] = ModelTypeGroup[0] as any;
     }
@@ -60,7 +59,7 @@ class ServiceConstructor extends Service {
   /** 创建service */
   readService() {
     let res = this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/service'));
-    let modules = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './pages'), [], [], ['service'], false);
+    const modules = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './pages'), [], [], ['service'], false);
     res = {
       ...res,
       ...modules
@@ -73,6 +72,6 @@ class ServiceConstructor extends Service {
       this[serviceName] = instanceService;
     });
   }
-};
+}
 
 export = ServiceConstructor;

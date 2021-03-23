@@ -17,7 +17,7 @@ export function MiddleClass() {
 }
 
 /** 装饰中间件 */
-export function Middle(position: 'front' | 'end' = 'front', execute: boolean = true, params: {[key: string]: any} = {} ) {
+export function Middle(position: 'front' | 'end' = 'front', execute = true, params: {[key: string]: any} = {} ) {
   return (target: any, middlewareName: string, descriptor: any) => {
     const middleware = {
       target,

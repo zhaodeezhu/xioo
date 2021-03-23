@@ -89,7 +89,7 @@ class SocketManger {
 
   /** 汇总命名空间 */
   collectNamespace() {
-    let namesapces = {};
+    const namesapces = {};
     namespaceList.forEach(space => {
       const {Constrcutor, namespace} = space
       if(!namesapces[namespace]) {
@@ -125,7 +125,7 @@ class SocketManger {
     this.io.listen(server);
     this.start();
   }
-};
+}
 
 
 export = SocketManger;

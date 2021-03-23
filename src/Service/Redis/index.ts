@@ -25,11 +25,11 @@ class Redis {
 
   dbnet: redis.RedisClient;
   /** 端口号 */
-  port: number = 6379;
+  port = 6379;
   /** 地址 */
-  host: string = '127.0.0.1';
+  host = '127.0.0.1';
   /** 密码 */
-  password: string = '';
+  password = '';
   /** 数据库号 */
   db?: number;
   constructor({

@@ -6,7 +6,6 @@
  * @LastEditors: dee
  * @LastEditTime: 2021-01-20 17:40:53
  */
-import Redis from './Redis';
 import App from '../App';
 
 class Service {

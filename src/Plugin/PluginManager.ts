@@ -13,9 +13,9 @@ class PluginManager extends Plugin {
 
   /** 注册目录中的插件 */
   registerProjectPlugins() {
-    let projectPlugins = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './server/plugins'));
+    const projectPlugins = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './server/plugins'));
 
-    let plugins = Object.values(projectPlugins);
+    const plugins = Object.values(projectPlugins);
 
     this.registerPlugin(plugins);
   }

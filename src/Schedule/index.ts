@@ -1,4 +1,3 @@
-import cornApp from 'node-cron';
 import App from '../App';
 
 import { ScheduleComponent, Task } from './StructureManager';

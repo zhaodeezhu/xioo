@@ -7,8 +7,6 @@ import App from '../App';
 
 const router = new RouterApp();
 
-const projectRoot = process.cwd();
-
 class Router {
   /** 全局app上下文 */
   app: App;
@@ -22,13 +20,13 @@ class Router {
   registerRouter() {
     this.app.server.use(router.routes() as any);
     this.app.server.use(router.allowedMethods() as any);
-  };
+  }
 
   /** 写入controller信息 */
   start() {
     routerList.forEach(item => {
-      let {basepath, Constrcutor} = item;
-      let RouterController = new Constrcutor(this.app);
+      const {basepath, Constrcutor} = item;
+      const RouterController = new Constrcutor(this.app);
       controlllerList
       .filter(controller => Constrcutor.prototype === controller.target)
       .forEach(route => {
@@ -44,7 +42,7 @@ class Router {
           const Controller = new ControllerPrototype();
           Controller.ctx = ctx;
           Controller.next = next;
-          let res = await RouterController[route.controllerName].call(Controller)
+          const res = await RouterController[route.controllerName].call(Controller)
           if(!res) {
             // await next();
           } else {
@@ -78,7 +76,7 @@ class Router {
    * 后续想想如何准备的注释
    * */
   readLess() {
-    let res = this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/controllers'), ['less']);
+    const res = this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/controllers'), ['less']);
     methods.forEach(method => {
       Object.keys(res).forEach(url => {
         const result = '/less/' + url;

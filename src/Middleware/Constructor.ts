@@ -44,7 +44,7 @@ class MiddlewareContructor extends Middleware {
   /** 测试内置中间件 */
   redisterMiddleware() {
     innerMiddleware.forEach(middle => {
-      let ware: any = middle();
+      const ware: any = middle();
       if(ware.then) {
         ware.then(res => {
           this.app.server.use(res as any)
@@ -58,7 +58,7 @@ class MiddlewareContructor extends Middleware {
 
   /** 注册less中间件 */
   registerLessMiddleware() {
-    let res = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './server/middleware/less'));
+    const res = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './server/middleware/less'));
     Object.keys(res).forEach(key => {
       this.app.server.use(res[key]())
     })

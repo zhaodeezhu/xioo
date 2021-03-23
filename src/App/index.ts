@@ -6,7 +6,6 @@
  * @LastEditors: dee
  * @LastEditTime: 2021-01-19 20:07:03
  */
-import * as path from "path";
 import Config from '../Config'
 import Server from "../Server/ServerManager";
 import Helper from "../Helper";
@@ -46,7 +45,6 @@ class App {
   plugin: PluginManager;
   /** xioos请求列表 */
   xioos: any = {};
-
   /** 第一个Redis连接 */
   redis: Redis;
   /** ctx上下文 */
@@ -76,7 +74,7 @@ class App {
 
   /** 创建请求对象列表数据 */
   private createXioosRequest() {
-    let xioosConfig = this.config.xioos;
+    const xioosConfig = this.config.xioos;
     if(!xioosConfig || typeof xioosConfig !== 'object') return;
     
     this.setXioosByConfig(xioosConfig);
@@ -86,7 +84,7 @@ class App {
    * 按配置设置请求对象
    * 如果键值存在相同，将会跳过并且打印提醒
    */
-  setXioosByConfig(xioosConfig) {
+  setXioosByConfig(xioosConfig: any) {
     Object.keys(xioosConfig).forEach(xiooskey => {
       if(this.xioos[xiooskey]) {
         console.redunderline(`${xiooskey}请求对象已经存在，设置将被跳过！`);
@@ -113,9 +111,6 @@ class App {
     /** 读取service信息 */
     // this.service.readService()
     this.server.start(port);
-
-    console.red(process.env.NODE_ENV);
   }
-};
-
+}
 export = App;

@@ -58,7 +58,7 @@ class Xioos implements IXioos {
     if(!this.baseUrl) {
       return;
     }
-    let xiooUrl = new url.URL(this.baseUrl);
+    const xiooUrl = new url.URL(this.baseUrl);
     // 解析host 和 port
     this.host = xiooUrl.host.split(':')[0];
     this.prefix = xiooUrl.pathname;
@@ -67,7 +67,7 @@ class Xioos implements IXioos {
   }
 
   get(url, options: IOption = {}) {
-    let {method, headers = {}} = options;
+    const {method, headers = {}} = options;
 
     return new Promise((resolve, reject) => {
       const op = {
@@ -80,7 +80,7 @@ class Xioos implements IXioos {
           ...headers
         }
       }
-      let req = https.request(op, (res) => {
+      const req = https.request(op, (res) => {
         let response = ''
         res.setEncoding('utf8');
         res.on('data', (chunk) => {
@@ -98,10 +98,10 @@ class Xioos implements IXioos {
   }
 
   post(url, options: IOption = {}) {
-    let {method, data,headers = {}} = options;
+    const {method, data,headers = {}} = options;
 
     return new Promise((resolve, reject) => {
-      let postData = data ? JSON.stringify(data) : '';
+      const postData = data ? JSON.stringify(data) : '';
       const op = {
         method: method ? method.toLocaleUpperCase() : 'POST',
         hostname: this.host,
@@ -114,7 +114,7 @@ class Xioos implements IXioos {
         }
       }
       
-      let req = https.request(op, (res) => {
+      const req = https.request(op, (res) => {
         let response = ''
         res.setEncoding('utf8');
         res.on('data', (chunk) => {
@@ -136,10 +136,10 @@ class Xioos implements IXioos {
   }
 
   requset(options: IOption = {}) {
-    let {method, data, headers = {}, url, encoding = 'utf-8'} = options;
+    const {method, data, headers = {}, url, encoding = 'utf-8'} = options;
 
     return new Promise((resolve, reject) => {
-      let postData = data ? JSON.stringify(data) : '';
+      const postData = data ? JSON.stringify(data) : '';
       const op = {
         method: method ? method.toLocaleUpperCase() : 'POST',
         hostname: this.host,
@@ -152,7 +152,7 @@ class Xioos implements IXioos {
         }
       }
 
-      let req = this.xioo.request(op, (res) => {
+      const req = this.xioo.request(op, (res) => {
         let response: string | any[] = '';
         if(encoding !== 'utf-8') {
           response = [];

@@ -2,7 +2,7 @@ export const scheduleList = [];
 
 export const taskList = [];
 
-export function ScheduleComponent(status: boolean = true) {
+export function ScheduleComponent(status = true) {
   return (constrcutor: any) => {
     scheduleList.push({
       Constrcutor: constrcutor,
@@ -12,14 +12,14 @@ export function ScheduleComponent(status: boolean = true) {
 }
 
 
-interface ITaskProps {
-  /** 任务名称，如果名称不存在将以方法名命名 */
-  name?: string;
-  /** corn表达式 */
-  corn: string;
-  /** 是否启用, 如果不存在以全局状态为准 */
-  status?: boolean;
-}
+// interface ITaskProps {
+//   /** 任务名称，如果名称不存在将以方法名命名 */
+//   name?: string;
+//   /** corn表达式 */
+//   corn: string;
+//   /** 是否启用, 如果不存在以全局状态为准 */
+//   status?: boolean;
+// }
 
 export function Task({name, corn, status}) {
   return (target: any, controllerName: string, descriptor: any) => {

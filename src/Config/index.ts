@@ -58,7 +58,6 @@ class Config {
 
   /** 读取config文件下的内容 */
   readAllConfig() {
-    const env = process.env.NODE_ENV;
     this.app.projectRoot;
     const ServerConfigSource = this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './config'));
     // 服务端的配置

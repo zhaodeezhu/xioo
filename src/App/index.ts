@@ -9,8 +9,9 @@
 import Config from '../Config'
 import Server from "../Server/ServerManager";
 import Helper from "../Helper";
-import Router from "../Router";
+import Router from "../Router/RouterManager";
 import Controller from "../Controller";
+import ControllerManager from '../Controller/ControllerManager';
 import Redis from '../Service/Redis';
 import ServiceConstructor from "../Service/Constructor";
 import MiddlewareConstructor from "../Middleware/Constructor";
@@ -29,6 +30,8 @@ class App {
   helper: Helper = new Helper();
   /** 全局配置 */
   config: Config = new Config(this);
+  /** 控制层 */
+  controller: ControllerManager = new ControllerManager(this);
   /** 数据层 */
   service: ServiceConstructor = new ServiceConstructor(this);
   /** http服务 */

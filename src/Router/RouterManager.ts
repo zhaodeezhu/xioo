@@ -27,6 +27,8 @@ class Router {
     routerList.forEach(item => {
       const {basepath, Constrcutor} = item;
       const RouterController = new Constrcutor(this.app);
+      // 注册controller
+      this.app.controller.registerController(Constrcutor.name, RouterController);
       controlllerList
       .filter(controller => Constrcutor.prototype === controller.target)
       .forEach(route => {
@@ -57,16 +59,14 @@ class Router {
   /** 读取动态的路径 */
   readImport() {
     // 读取和页面相关的controllers
-    // const pages = this.app.helper.dirTreePath(path.join(this.app.readRoot, './pages'), [], [], ['controllers'], false);
-    // console.log(pages);
     this.app.helper.dirTreeSource(path.join(this.app.readRoot, './pages'), [], [], ['controllers'], false);
-    const res = this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/controllers'));
-    Object.keys(res).forEach(key => {
-      if(key.indexOf('less') > -1) return;
-      const Con = res[key];
+    this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/controllers'));
+    // Object.keys(res).forEach(key => {
+    //   if(key.indexOf('less') > -1) return;
+    //   const Con = res[key];
 
-      new Con(this.app);
-    })
+    //   new Con(this.app);
+    // })
   }
 
   /** 

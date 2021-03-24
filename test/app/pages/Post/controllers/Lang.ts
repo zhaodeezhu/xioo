@@ -2,7 +2,7 @@ import { Post, Route, Controller, Get } from 'xioo';
 
 
 @Route('/my/test')
-export default class Auth extends Controller {
+export default class Lang extends Controller {
   @Get('/lang')
   async getData() {
 

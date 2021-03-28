@@ -63,10 +63,10 @@ class Config {
     // 服务端的配置
     const ServerConfig = new ServerConfigSource.server();
 
-    const {redis, httpServer, mysql, socket, xioos, ...props} = ServerConfig;
-    this.redis = redis;
+    const {redis = [], httpServer, mysql = [], socket, xioos, ...props} = ServerConfig;
+    this.redis = redis.filter(item => item.launch);
     this.http = httpServer;
-    this.mysql = mysql;
+    this.mysql = mysql.filter(item => item.launch);
     this.socketConfig = socket;
     // 读取xioos配置数据
     this.xioos = xioos;

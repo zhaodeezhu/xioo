@@ -15,6 +15,8 @@ interface IModelSQL {
   host: string;
   /** 密码 */
   password?: string;
+  /** 是否启动 */
+  launch?: boolean;
 }
 
 /** MySQL */
@@ -56,7 +58,8 @@ export = class Config implements IConfig {
     {
       port: 6379,
       host: '127.0.0.1',
-      db: 8
+      db: 8,
+      launch: false
     }
   ];
   mysql: IMySQL[] = [
@@ -65,7 +68,8 @@ export = class Config implements IConfig {
       host: '119.29.143.189',
       user: 'root',
       password: 'cover123ZHAO',
-      database: 'mpromise'
+      database: 'mpromise',
+      launch: false
     }
   ]
   httpServer: IHtppServer = {

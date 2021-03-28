@@ -6,19 +6,22 @@
     "configurations": [
       {
         "type": "node",
-        "request": "launch",
+        "request": "attach",
         "name": "Xioo",
         // "program": "${workspaceFolder}/app/server/index.ts",
-        "args": ["${workspaceFolder}/app/server/index.ts"],
-        "runtimeArgs": [                // 运行参数，会在cli和启动文件中间添加
-          "--nolazy",
-          "-r",
-          "ts-node/register"          // 这里前文介绍过，要使用ts-node的register模块
-        ],
+        // "args": ["${workspaceFolder}/app/server/index.ts"],
+        // "runtimeExecutable": "ts-node",
+        // "runtimeArgs": [                // 运行参数，会在cli和启动文件中间添加
+        //   "--files",
+        //   // "--nolazy",
+        //   // "-r"
+        //   // "ts-node/register"          // 这里前文介绍过，要使用ts-node的register模块
+        // ],
         "sourceMaps": true,
-        "cwd": "${workspaceRoot}", 
-        "protocol": "inspector",
-        "console": "integratedTerminal"
+        // "cwd": "${workspaceRoot}", 
+        // "protocol": "inspector",
+        // "console": "integratedTerminal",
+        "processId": "${command:PickProcess}"
       }
     ]
   }

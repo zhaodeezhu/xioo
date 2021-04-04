@@ -4,6 +4,7 @@
     "dev": "nodemon --files ./app/server/master.ts",
     "start": "node ./scripts/index.js",
     "process": "nodemon --files ./app/server/master.ts",
-    "front": "node ./scripts/front.js"
+    "front": "node ./scripts/front.js",
+    "agant": "nodemon --files ./app/server/agant.ts"
   }
 }

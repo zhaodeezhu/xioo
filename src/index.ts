@@ -7,6 +7,7 @@ import Socket from './Socket/Socket';
 import Schedule from './Schedule';
 import Helper from './Helper';
 import Plugin from './Plugin';
+import Agant from './Agant/AgantManager';
 
 /** 导出路由相关 */
 export { Get, Patch, Post, Delete, Route } from './Router/structure';
@@ -21,6 +22,8 @@ export { Socket, Schedule };
 
 /** 导出请求工具 */
 export { Xioos, Helper };
+
+export { Agant };
 
 /** 导出App */
 export default App;

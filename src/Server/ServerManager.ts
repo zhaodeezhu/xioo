@@ -9,7 +9,7 @@ import Koa from 'koa';
 import App from '../App';
 import * as http from 'http';
 
-import printString from './print';
+// import printString from './print';
 
 import { ICostomC, ICostomS, CostomCtx } from '../Declaration/server';
 
@@ -44,7 +44,7 @@ class Server {
       socket.end('HTTP/1.1 400 Bad Request\r\n\r\n');
     });
     this.server.listen(port, () => {
-      console.cyan(printString);
+      // console.cyan(printString);
       console.green(`XIOO服务已整装就绪-${port}端口已成功启动！等待命令`);
     });
   }

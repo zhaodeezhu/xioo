@@ -21,7 +21,7 @@ export function ScheduleComponent(status = true) {
 //   status?: boolean;
 // }
 
-export function Task({name, corn, status}) {
+export function Task({name, corn, status, worker = 'worker'}) {
   return (target: any, controllerName: string, descriptor: any) => {
     taskList.push({
       target,
@@ -29,7 +29,8 @@ export function Task({name, corn, status}) {
       controller: descriptor.value,
       name,
       corn,
-      status
+      status,
+      worker
     });
   }
 }

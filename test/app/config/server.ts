@@ -82,7 +82,7 @@ export = class Config implements IConfig {
       host: '127.0.0.1',
       db: 2
     },
-    launch: true
+    launch: false
   };
   /** 请求实例列表 */
   xioos = {

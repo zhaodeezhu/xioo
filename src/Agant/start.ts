@@ -1,17 +1,8 @@
-// import * as childProcess from 'child_process';
 import cluster from 'cluster';
 import * as path from 'path';
-import * as fs from 'fs';
-import { Helper, Agant } from 'xioo';
-
-import os from 'os';
-
-// 先去生成声明文件，在去构建
-// Helper.makeType('service', 'service');
-// Helper.makeType('plugins', 'plugins', 'Plugin');
+import { Agant } from '../index';
 
 if (cluster.isMaster) {
-  const cpuLen = os.cpus().length;
   const agant = new Agant(cluster as any);
   for (let i = 0; i < agant.startCpuLen; i++) {
     const worker = cluster.fork();
@@ -21,7 +12,11 @@ if (cluster.isMaster) {
     });
   }
 } else {
-  require(path.join(__dirname, './index'));
+
+  const projectRoot = process.cwd();
+  const readRoot = process.env.READ_ENV === 'prod' ? projectRoot + '/package' : projectRoot + '/app';
+
+  require(path.join(readRoot, './server/index'));
 
   process.on("uncaughtException", (err) => {
     console.log(err);
@@ -29,5 +24,3 @@ if (cluster.isMaster) {
     process.exit(1);
   });
 }
-
-// childProcess.fork('./app/server/index');

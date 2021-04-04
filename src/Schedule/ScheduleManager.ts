@@ -44,7 +44,6 @@ class ScheduleManager extends Schedule {
   private initAllTask() {
     // 读取所有的定时任务文件
     this.app.helper.getDirToFileSource(path.join(this.app.readRoot, './server/schedule'));
-    console.log(scheduleList)
     scheduleList.forEach(item => {
       const {status, Constrcutor} = item;
       const ScheduleController = new Constrcutor(this.app);
@@ -55,7 +54,8 @@ class ScheduleManager extends Schedule {
           corn: task.corn,
           name: task.name ? task.name : task.controllerName,
           handler: task.controller.bind(ScheduleController),
-          status: task.status === undefined ? status : task.status
+          // status: task.status === undefined ? status : task.status
+          status: false
         })
       });
     });
@@ -70,7 +70,7 @@ class ScheduleManager extends Schedule {
   /** 开始任务 */
   start(name) {
     this.tasks[name].status = true;
-    this.tasks[name].task.start;
+    this.tasks[name].task.start();
   }
 
   /** 注册任务 */

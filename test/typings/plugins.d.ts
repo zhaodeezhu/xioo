@@ -10,11 +10,5 @@
         Time: Time
       
         }
-
-        export interface IPluginManager {
-          
-          Time: Time
-          
-        }
       }
     

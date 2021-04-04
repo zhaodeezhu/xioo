@@ -18,6 +18,7 @@ import MiddlewareConstructor from "../Middleware/Constructor";
 import SocketManger from '../Socket/SocketManger';
 import ScheduleManager from '../Schedule/ScheduleManager';
 import PluginManager from '../Plugin/PluginManager';
+import Agant from '../Agant';
 import { Get, Delete, Post, Patch, Route } from "../Router/structure";
 import Xioos from '../Service/xioos';
 
@@ -50,6 +51,8 @@ class App {
   xioos: any = {};
   /** 第一个Redis连接 */
   redis: Redis;
+  /** 进程管理调度器 */
+  agant: Agant = new Agant(this);
   /** ctx上下文 */
   // ctx = this.server.ctx;
 

@@ -38,6 +38,7 @@ class AgantManager {
 
   /** 制造声明文件 */
   private makeTypes() {
+    if(process.env.READ_ENV === 'prod') return;
     Helper.makeType('service', 'service');
     Helper.makeType('plugins', 'plugins', 'Plugin');
   }

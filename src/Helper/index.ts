@@ -77,6 +77,10 @@ interface IHelper {
 abstract class Util {
   static getDirToFilePath(dirPath: string, exclude: string[] = []) {
     const filePathMap: { [key: string]: string } = {};
+
+    const isExists = fs.existsSync(dirPath);
+    if (!isExists) return {}
+    
     function getData(nd: string, frontFileName: string) {
       fs.readdirSync(nd).forEach(p => {
         if (fs.statSync(path.join(nd, p)).isDirectory()) {

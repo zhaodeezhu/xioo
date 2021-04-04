@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.46](https://github.com/zhaodeezhu/xioo/compare/v0.0.45...v0.0.46) (2021-04-04)
+
+
+### Bug Fixes
+
+* 🐛 Fix the production environment build declaration file ([527b8e4](https://github.com/zhaodeezhu/xioo/commit/527b8e4355cc41ae4b9de40d60be8038ce435759))
+
 ### [0.0.45](https://github.com/zhaodeezhu/xioo/compare/v0.0.44...v0.0.45) (2021-04-04)
 
 

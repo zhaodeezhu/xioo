@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.45](https://github.com/zhaodeezhu/xioo/compare/v0.0.44...v0.0.45) (2021-04-04)
+
+
+### Bug Fixes
+
+* 🐛 Fixed bug where getDirtoFilePath method doesn't read dir ([6713aa0](https://github.com/zhaodeezhu/xioo/commit/6713aa0c35a70b4bf0cc209cd59092f955843a8f))
+
 ### [0.0.44](https://github.com/zhaodeezhu/xioo/compare/v0.0.41...v0.0.44) (2021-04-04)
 
 

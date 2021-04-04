@@ -79,7 +79,9 @@ class AgantManager {
       console.log(
         `工作进程已连接到 ${address.port}`);
       if(this.cpuSum === this.startCpuLen) {
+        console.cyan(`已启动 === ${this.cpuSum} === 个进程服务！！！`);
         console.cyan(xiooData);
+        
         this.schedule.initSchedule();
       }
     });

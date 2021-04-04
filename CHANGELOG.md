@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.44](https://github.com/zhaodeezhu/xioo/compare/v0.0.41...v0.0.44) (2021-04-04)
+
+
+### Features
+
+* 🚀 add cluster agant ([e835550](https://github.com/zhaodeezhu/xioo/commit/e8355506f581425431c8df10b6a9a839ed9b661e))
+
 ### 0.0.41 (2021-03-28)
 
 

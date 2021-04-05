@@ -6,7 +6,11 @@ import { taskList } from '../Schedule/StructureManager';
 
 
 export = class AgantSchduele {
+  /** 代理器 */
   agant: Agant;
+
+  /** 动态定时任务列表, 主要存名字，判断是否已经处理 */
+  dynamicSchedule = {};
 
   constructor(agant: Agant) {
     this.agant = agant;
@@ -41,13 +45,33 @@ export = class AgantSchduele {
     this.changeStatus(name, count);
   }
 
-  stop(name: string, count: 'all' | 'worker' = 'worker') {
-    this.changeStatus(name, count, false);
+  stop(name: string) {
+    this.changeStatus(name, 'all', false);
+  }
+
+  /** 处理动态传入定时任务 */
+  makeDynamicSchedule(name, worker, status) {
+    if(this.dynamicSchedule[name]) return;
+    this.dynamicSchedule[name] = {worker, status};
+  }
+
+  /** 初始化动态的定时任务 */
+  initDynamicSchedule() {
+    Object.keys(this.dynamicSchedule).forEach(name => {
+      const { status, worker } = this.dynamicSchedule[name];
+      if(status) {
+        this.start(name, worker);
+      }
+    })
   }
 
   /** 监听消息 */
   listen(data) {
-    const { status, name, worker = 'worker' } = data;
-    this.changeStatus(name, worker, status);
+    const { status, name, worker = 'worker', method } = data;
+    if(method === 'origin') {
+      this.changeStatus(name, worker, status);
+    } else {
+      this.makeDynamicSchedule(name, worker, status);
+    }
   }
 }

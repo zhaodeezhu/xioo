@@ -31,7 +31,7 @@ export = class Agant {
   }
 
   /** 控制定时任务 */
-  dispatchSchedule(name, status) {
-    process.send({type: 'schedule', data: { name, status }});
+  dispatchSchedule(name, status, method: 'origin' | 'dynamic' = 'origin', worker: 'worker' | 'all' = 'worker') {
+    process.send({type: 'schedule', data: { name, status, method, worker }});
   }
 }

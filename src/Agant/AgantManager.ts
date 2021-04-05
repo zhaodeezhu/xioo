@@ -83,6 +83,12 @@ class AgantManager {
         console.cyan(xiooData);
         
         this.schedule.initSchedule();
+        console.bgCyan('动态的定时任务将在一分钟后启动');
+        const timeout = setTimeout(() => {
+          this.schedule.initDynamicSchedule();
+          console.log('动态的定时任务已启动');
+          clearTimeout(timeout);
+        }, 50 * 100)
       }
     });
   }

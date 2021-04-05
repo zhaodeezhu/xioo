@@ -21,6 +21,10 @@ interface IRegisterProps {
   handler: () => any;
   /** 是否启用 */
   status?: boolean;
+  /** 启动的核数 */
+  worker?: 'all' | 'worker' | string;
+  /** 动态注册的状态 */
+  dynamicStatus?: boolean;
 }
 
 class ScheduleManager extends Schedule {
@@ -33,10 +37,10 @@ class ScheduleManager extends Schedule {
   tasks: ISchedules = {}
 
   /** 注册定时任务 */
-  registerScheduleTask({corn, name, handler, status = true}: IRegisterProps) {
+  registerScheduleTask({corn, name, handler, status = true, dynamicStatus = true}: IRegisterProps) {
     this.tasks[name] = {
       status: status,
-      task: cornApp.schedule(corn, handler, {scheduled: status})
+      task: cornApp.schedule(corn, handler, {scheduled: dynamicStatus ? false : status})
     };
   }
 
@@ -55,6 +59,8 @@ class ScheduleManager extends Schedule {
           name: task.name ? task.name : task.controllerName,
           handler: task.controller.bind(ScheduleController),
           // status: task.status === undefined ? status : task.status
+
+          // 初始化将所有的任务都不启动
           status: false
         })
       });
@@ -74,9 +80,10 @@ class ScheduleManager extends Schedule {
   }
 
   /** 注册任务 */
-  registerTask(props: IRegisterProps[]) {
-    props.forEach(props => {
-      this.registerScheduleTask(props);
+  registerTask(props: IRegisterProps[], calllback?: (item: IRegisterProps) => void) {
+    props.forEach(prop => {
+      this.registerScheduleTask(prop);
+      calllback && calllback(prop);
     });
   }
 }

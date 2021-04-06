@@ -1,4 +1,4 @@
-import cluster, { Cluster } from 'cluster';
+import { Cluster } from 'cluster';
 import os from 'os';
 import Helper from '../Helper';
 
@@ -88,7 +88,7 @@ class AgantManager {
           this.schedule.initDynamicSchedule();
           console.log('动态的定时任务已启动');
           clearTimeout(timeout);
-        }, 50 * 100)
+        }, 1000 * 60)
       }
     });
   }

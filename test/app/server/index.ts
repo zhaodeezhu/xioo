@@ -16,7 +16,7 @@ console.log('我执行了')
 
 const app = new App();
 
-let res = app.helper['dirTreePath'](path.join(app.projectRoot, './app/server'), ['controllers']);
+// let res = app.helper['dirTreePath'](path.join(app.projectRoot, './app/server'), ['controllers']);
 
 // console.red(res);
 

@@ -2,7 +2,7 @@ import App from './App';
 import Controller from './Controller';
 import Middleware from './Middleware';
 import Service from './Service';
-import Xioos from './Service/xioos';
+import Xios from './Service/xios';
 import Socket from './Socket/Socket';
 import Schedule from './Schedule';
 import Helper from './Helper';
@@ -21,7 +21,7 @@ export { Controller, Middleware, Service, Plugin };
 export { Socket, Schedule };
 
 /** 导出请求工具 */
-export { Xioos, Helper };
+export { Xios, Helper };
 
 export { Agant };
 

@@ -17,8 +17,10 @@ export default class Auth extends Controller {
     // console.log('我是之前的');
     // console.log(ctx.state['a'])
 
-    await next();
-
+    // await next();
+    
+    let data = await this.app.xios.base.get('/promise/auth/test')
+    console.log(data);
     // console.log('我是之后的');
 
     // console.log(ctx.state['a'])

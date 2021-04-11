@@ -127,13 +127,15 @@ declare module 'xioo' {
     data?: {[key:string]: any};
     /** 获取的数据类型 默认utf-8 */
     encoding?: string;
+    /** 路径参数 */
+    params?: { [key: string]: any }
   }
 
   export class Xioos {
     constructor({baseUrl, headers}: IXiooProps)
-    get: (url: string, options: IOption) => Promise<any>;
+    get: (url: string, options?: IOption) => Promise<any>;
     /** post请求方法 */
-    post: (url: string, options: IOption) => Promise<any>;
+    post: (url: string, options?: IOption) => Promise<any>;
     /** 通用请求方法 */
     requset: (options: IOption) => Promise<any>;
   }
@@ -151,7 +153,7 @@ declare module 'xioo' {
     /** 基础配置 */
     config: any;
     /** 请求器 */
-    xioos: {[key: string]: Xioos};
+    xios: {[key: string]: Xioos};
     /** 控制器 */
     controller: ControllerManager;
     /** 服务器 */

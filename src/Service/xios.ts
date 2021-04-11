@@ -1,8 +1,9 @@
 import * as http from 'http';
 import * as https from 'https';
 import * as url from 'url';
+import * as querystring from 'querystring';
 
-interface IXioos {
+interface IXios {
   /** 基础的地址，用户可传 */
   baseUrl: string;
   /** get请求简单方法 */
@@ -37,9 +38,11 @@ interface IOption {
   data?: {[key:string]: any};
   /** 获取的数据类型 默认utf-8 */
   encoding?: string;
+  /** 路径参数 */
+  params?: { [key: string]: any }
 }
 
-class Xioos implements IXioos {
+class Xios implements IXios {
   baseUrl = '';
   private host = '';
   private port = '';
@@ -66,84 +69,117 @@ class Xioos implements IXioos {
     this.xioo = xiooUrl.protocol === 'http:' ? http : https;
   }
 
-  get(url, options: IOption = {}) {
-    const {method, headers = {}} = options;
+  /** 解析url参数 */
+  private urlParamsEncode(pathname: string, parmas) {
+    if(!pathname) return new Error('url undefined');
+    if(!parmas) return pathname;
+    const hostname = 'http://127.0.0.1' + pathname;
+    const paramsurl = new url.URL(hostname);
+    const search = paramsurl.search;
+    const query = querystring.encode(parmas);
 
-    return new Promise((resolve, reject) => {
-      const op = {
-        method: method ? method.toLocaleUpperCase() : 'GET',
-        hostname: this.host,
-        path: `${this.prefix}${url}`,
-        port: this.port,
-        headers: {
-          ...this.headers,
-          ...headers
-        }
-      }
-      const req = https.request(op, (res) => {
-        let response = ''
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => {
-          response += chunk;
-        });
-        res.on('end', () => {
-          resolve(JSON.parse(response));
-        });
-      })
-      req.on('error', (e) => {
-        reject(e);
-      });
-      req.end();
-    });
+    if (search) {
+      return pathname + '&' + query
+    } else {
+      return pathname + '?' + query;
+    }
+  }
+
+  // get(url, options: IOption = {}) {
+  //   const {method, headers = {}} = options;
+
+  //   return new Promise((resolve, reject) => {
+  //     const op = {
+  //       method: method ? method.toLocaleUpperCase() : 'GET',
+  //       hostname: this.host,
+  //       path: `${this.prefix}${url}`,
+  //       port: this.port,
+  //       headers: {
+  //         ...this.headers,
+  //         ...headers
+  //       }
+  //     }
+  //     const req = https.request(op, (res) => {
+  //       let response = ''
+  //       res.setEncoding('utf8');
+  //       res.on('data', (chunk) => {
+  //         response += chunk;
+  //       });
+  //       res.on('end', () => {
+  //         resolve(JSON.parse(response));
+  //       });
+  //     })
+  //     req.on('error', (e) => {
+  //       reject(e);
+  //     });
+  //     req.end();
+  //   });
+  // }
+
+  // post(url, options: IOption = {}) {
+  //   const {method, data,headers = {}} = options;
+
+  //   return new Promise((resolve, reject) => {
+  //     const postData = data ? JSON.stringify(data) : '';
+  //     const op = {
+  //       method: method ? method.toLocaleUpperCase() : 'POST',
+  //       hostname: this.host,
+  //       path: `${this.prefix}${url}`,
+  //       port: this.port,
+  //       headers: {
+  //         ...this.headers,
+  //         ...headers,
+  //         "Content-Length": Buffer.byteLength(postData)
+  //       }
+  //     }
+      
+  //     const req = https.request(op, (res) => {
+  //       let response = ''
+  //       res.setEncoding('utf8');
+  //       res.on('data', (chunk) => {
+  //         response += chunk;
+  //       });
+  //       res.on('end', () => {
+  //         resolve(JSON.parse(response));
+  //       });
+  //     })
+  //     req.on('error', (e) => {
+  //       reject(e);
+  //     });
+  //     if(data) {
+  //       req.end(JSON.stringify(data));
+  //     } else {
+  //       req.end();
+  //     }
+  //   });
+  // }
+
+  get(url, options: IOption = {}) {
+    return this.requset({
+      url,
+      method: 'get',
+      ...options
+    })
   }
 
   post(url, options: IOption = {}) {
-    const {method, data,headers = {}} = options;
-
-    return new Promise((resolve, reject) => {
-      const postData = data ? JSON.stringify(data) : '';
-      const op = {
-        method: method ? method.toLocaleUpperCase() : 'POST',
-        hostname: this.host,
-        path: `${this.prefix}${url}`,
-        port: this.port,
-        headers: {
-          ...this.headers,
-          ...headers,
-          "Content-Length": Buffer.byteLength(postData)
-        }
-      }
-      
-      const req = https.request(op, (res) => {
-        let response = ''
-        res.setEncoding('utf8');
-        res.on('data', (chunk) => {
-          response += chunk;
-        });
-        res.on('end', () => {
-          resolve(JSON.parse(response));
-        });
-      })
-      req.on('error', (e) => {
-        reject(e);
-      });
-      if(data) {
-        req.end(JSON.stringify(data));
-      } else {
-        req.end();
-      }
-    });
+    return this.requset({
+      url,
+      method: 'post',
+      ...options
+    })
   }
 
   requset(options: IOption = {}) {
-    const {method, data, headers = {}, url, encoding = 'utf-8'} = options;
+    const {method, data, headers = {}, url, encoding = 'utf-8', params} = options;
+    const lastUrl = params ? this.urlParamsEncode(url, params) : url
 
     return new Promise((resolve, reject) => {
       const postData = data ? JSON.stringify(data) : '';
       const op = {
         method: method ? method.toLocaleUpperCase() : 'POST',
         hostname: this.host,
-        path: `${this.prefix === '/' ? '' : this.prefix}${url}`,
+        path: `${this.prefix === '/' ? '' : this.prefix}${lastUrl}`,
         port: this.port,
         headers: {
           ...this.headers,
@@ -190,6 +226,7 @@ class Xioos implements IXioos {
     });
   }
 
+
 }
 
-export = Xioos;
+export = Xios;

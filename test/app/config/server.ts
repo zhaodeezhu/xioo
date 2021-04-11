@@ -88,6 +88,9 @@ export = class Config implements IConfig {
   xioos = {
     wx: {
       baseUrl: 'https://api.weixin.qq.com'
+    },
+    base: {
+      baseUrl: 'http://127.0.0.1:2001'
     }
   };
 

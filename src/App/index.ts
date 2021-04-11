@@ -20,7 +20,7 @@ import ScheduleManager from '../Schedule/ScheduleManager';
 import PluginManager from '../Plugin/PluginManager';
 import Agant from '../Agant';
 import { Get, Delete, Post, Patch, Route } from "../Router/structure";
-import Xioos from '../Service/xioos';
+import Xios from '../Service/xios';
 
 class App {
   /** 全局运行的目录 */
@@ -48,7 +48,7 @@ class App {
   /** 插件 */
   plugin: PluginManager;
   /** xioos请求列表 */
-  xioos: any = {};
+  xios: any = {};
   /** 第一个Redis连接 */
   redis: Redis;
   /** 进程管理调度器 */
@@ -92,11 +92,11 @@ class App {
    */
   setXioosByConfig(xioosConfig: any) {
     Object.keys(xioosConfig).forEach(xiooskey => {
-      if(this.xioos[xiooskey]) {
+      if(this.xios[xiooskey]) {
         console.redunderline(`${xiooskey}请求对象已经存在，设置将被跳过！`);
         return;
       }
-      this.xioos[xiooskey] = new Xioos({
+      this.xios[xiooskey] = new Xios({
         ...xioosConfig[xiooskey]
       });
     });

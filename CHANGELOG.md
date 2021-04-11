@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.50](https://github.com/zhaodeezhu/xioo/compare/v0.0.49...v0.0.50) (2021-04-11)
+
+
+### Features
+
+* 🚀 add dynamic schedule ([70cd108](https://github.com/zhaodeezhu/xioo/commit/70cd108cfa0e1adad391d6adf7d06bd898ea9daa))
+
 ### [0.0.49](https://github.com/zhaodeezhu/xioo/compare/v0.0.48...v0.0.49) (2021-04-04)
 
 ### [0.0.48](https://github.com/zhaodeezhu/xioo/compare/v0.0.47...v0.0.48) (2021-04-04)

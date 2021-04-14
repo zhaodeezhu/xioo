@@ -31,6 +31,7 @@ class PluginManager extends Plugin {
     }
   }
 
+  /** 将插件写入插件列表 */
   private writePlugin(PluginTarget) {
     const pluginInstance = new PluginTarget(this.app);
 

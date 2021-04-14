@@ -19,7 +19,9 @@ export default class Auth extends Controller {
 
     // await next();
     
-    let data = await this.app.xios.base.get('/promise/auth/test')
+    let data = await this.app.xios.base.get('/promise/auth/test');
+    const query = ctx.querystring;
+    const query2 = ctx.query;
     console.log(data);
     // console.log('我是之后的');
 

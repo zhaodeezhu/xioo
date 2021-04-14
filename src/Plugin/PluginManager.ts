@@ -12,7 +12,7 @@ class PluginManager extends Plugin {
   plugins: {[key: string]: any} = {};
 
   /** 注册目录中的插件 */
-  registerProjectPlugins() {
+  private registerProjectPlugins() {
     const projectPlugins = this.app.helper.dirTreeSource(path.join(this.app.readRoot, './server/plugins'));
 
     const plugins = Object.values(projectPlugins);

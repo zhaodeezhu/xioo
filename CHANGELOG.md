@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.54](https://github.com/zhaodeezhu/xioo/compare/v0.0.53...v0.0.54) (2021-04-15)
+
+
+### Bug Fixes
+
+* 🐛 Fixed dir not exists ([029f391](https://github.com/zhaodeezhu/xioo/commit/029f3919ae143972441d688e6c3ed5d90b144159))
+
 ### [0.0.53](https://github.com/zhaodeezhu/xioo/compare/v0.0.52...v0.0.53) (2021-04-15)
 
 

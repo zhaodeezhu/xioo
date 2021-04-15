@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.53](https://github.com/zhaodeezhu/xioo/compare/v0.0.52...v0.0.53) (2021-04-15)
+
+
+### Features
+
+* 🚀 add middle middleware ([6cced44](https://github.com/zhaodeezhu/xioo/commit/6cced44e0572526cb7a32f186d03cb55a6f0c8f2))
+
 ### [0.0.52](https://github.com/zhaodeezhu/xioo/compare/v0.0.50...v0.0.52) (2021-04-15)
 
 

@@ -168,6 +168,8 @@ declare module 'xioo' {
     plugin: IPluginManager;
     /** 进程控制器 */
     agant: any;
+    /** 动态设置请求对象 */
+    setXioosByConfig: (xioosConfig: any) => void;
   }
 
   interface ITaskProps {

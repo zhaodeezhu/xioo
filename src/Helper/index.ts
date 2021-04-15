@@ -260,6 +260,8 @@ class Helper extends Util implements IHelper {
     if (!isExists) return {}
 
     function getData(nd: string, frontFileName: string) {
+      const isExists = fs.existsSync(nd);
+      if(!isExists) return;
       fs.readdirSync(nd).forEach(p => {
         if (fs.statSync(path.join(nd, p)).isDirectory()) {
           getData(path.join(nd, p), path.join(nd, p))

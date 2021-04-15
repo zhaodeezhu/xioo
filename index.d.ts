@@ -212,6 +212,7 @@ declare module 'xioo' {
   export class Middleware {
     app: App;
     ctx: CostomCtx;
+    next: any;
   }
 
   export const MiddleClass;

@@ -26,13 +26,14 @@ class MiddlewareContructor extends Middleware {
       .filter(middle => Constrcutor.prototype === middle.target)
       .forEach(ware => {
         this.app.server.use(async (ctx, next) => {
-          function MiddlewarePrototype() { this.ctx = null; }
+          function MiddlewarePrototype() { this.ctx = null; this.next = null }
           MiddlewarePrototype.prototype = MiddlewareConstrcutor;
           const Middleware = new MiddlewarePrototype();
           Middleware.ctx = ctx;
+          Middleware.next = next;
           const res = await MiddlewareConstrcutor[ware.middlewareName].call(Middleware, ware.params);
           if(!res) {
-            await next();
+            // await next();
           } else {
             ctx.state.data = res;
           }

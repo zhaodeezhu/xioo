@@ -6,6 +6,8 @@ export const middlewareClassList: any[] = [];
 export const middlewareFrontList: any[] = [];
 /** 中间件后置列表 */
 export const middlewareEndList: any[] = [];
+/** 中间件中间列表 */
+export const middlewareMiddleList: any[] = [];
 
 /** 装饰类 */
 export function MiddleClass() {
@@ -17,7 +19,7 @@ export function MiddleClass() {
 }
 
 /** 装饰中间件 */
-export function Middle(position: 'front' | 'end' = 'front', execute = true, params: {[key: string]: any} = {} ) {
+export function Middle(position: 'front' | 'end' | 'middle' = 'front', execute = true, params: {[key: string]: any} = {} ) {
   return (target: any, middlewareName: string, descriptor: any) => {
     const middleware = {
       target,
@@ -29,8 +31,10 @@ export function Middle(position: 'front' | 'end' = 'front', execute = true, para
     };
     if(position === 'front') {
       middlewareFrontList.push(middleware);
-    } else {
+    } else if(position === 'end') {
       middlewareEndList.push(middleware);
+    } else {
+      middlewareMiddleList.push(middleware);
     }
   }
 }

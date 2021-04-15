@@ -107,11 +107,17 @@ class App {
   /** 启动app */
   start(port: number) {
     this.socket && this.socket.listen(this.server.server);
+    // 前置
     this.middleware.registerMiddleware("front");
+    // 内置
     this.middleware.redisterMiddleware();
+    // 中间
+    this.middleware.registerMiddleware('middle');
+    // 简单
     this.middleware.registerLessMiddleware();
     this.router.start();
     this.router.registerRouter();
+    // 后置
     this.middleware.registerMiddleware("end");
 
     /** 读取service信息 */

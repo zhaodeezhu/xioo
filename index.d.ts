@@ -133,11 +133,13 @@ declare module 'xioo' {
 
   export class Xioos {
     constructor({baseUrl, headers}: IXiooProps)
-    get: (url: string, options?: IOption) => Promise<any>;
+    get: <T>(url: string, options?: IOption) => Promise<T>;
     /** post请求方法 */
-    post: (url: string, options?: IOption) => Promise<any>;
+    post: <T>(url: string, options?: IOption) => Promise<T>;
     /** 通用请求方法 */
-    requset: (options: IOption) => Promise<any>;
+    requset: <T>(options: IOption) => Promise<T>;
+    /** 上传文件方法 */
+    upload: <T>(url: string, file: any, options?: IOption) => Promise<T>;
   }
 
   export const Agant;

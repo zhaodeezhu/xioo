@@ -47,7 +47,7 @@ class Config {
   http: IHtppServer;
   mysql: IMySQL[];
   socketConfig: ISocket;
-  xioos: any;
+  xios: any;
   /** 其他的配置 */
   other: any;
   
@@ -63,13 +63,13 @@ class Config {
     // 服务端的配置
     const ServerConfig = new ServerConfigSource.server();
 
-    const {redis = [], httpServer, mysql = [], socket, xioos, ...props} = ServerConfig;
+    const {redis = [], httpServer, mysql = [], socket, xios, ...props} = ServerConfig;
     this.redis = redis.filter(item => item.launch);
     this.http = httpServer;
     this.mysql = mysql.filter(item => item.launch);
     this.socketConfig = socket;
     // 读取xioos配置数据
-    this.xioos = xioos;
+    this.xios = xios;
     this.other = props;
   }
 }

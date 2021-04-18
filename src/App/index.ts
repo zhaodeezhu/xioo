@@ -80,7 +80,7 @@ class App {
 
   /** 创建请求对象列表数据 */
   private createXioosRequest() {
-    const xioosConfig = this.config.xioos;
+    const xioosConfig = this.config.xios;
     if(!xioosConfig || typeof xioosConfig !== 'object') return;
     
     this.setXioosByConfig(xioosConfig);

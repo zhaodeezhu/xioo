@@ -85,7 +85,7 @@ export = class Config implements IConfig {
     launch: false
   };
   /** 请求实例列表 */
-  xioos = {
+  xios = {
     wx: {
       baseUrl: 'https://api.weixin.qq.com'
     },

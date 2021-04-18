@@ -41,7 +41,7 @@ interface IOption {
   headers?: {[key:string]: any};
   /** 请求体 */
   data?: {[key:string]: any};
-  /** 获取的数据类型 默认utf-8 */
+  /** 获取的数据类型 默认utf-8，传入binary将会转成文件流 */
   encoding?: string;
   /** 路径参数 */
   params?: { [key: string]: any }

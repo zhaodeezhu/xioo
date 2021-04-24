@@ -10,6 +10,54 @@ declare module 'xioo' {
     }
   }
 
+  export namespace XiooConfig {
+    /** 数据服务的基础配置 */
+    interface IModelSQL {
+      /** 端口号 默认80 */
+      port?: number;
+      /** 地址 */
+      host: string;
+      /** 密码 */
+      password?: string;
+      /** 是否启动 */
+      launch?: boolean;
+    }
+
+    /** Redis */
+    export interface IRedis extends IModelSQL {
+      /** 数据库号 */
+      db?: number;
+    }
+
+    /** MySQL */
+    export interface IMySQL extends IModelSQL {
+      user: string;
+      database?: string;
+    }
+
+    /** http服务配置 */
+    export interface IHtppServer {
+      port: number;
+    }
+
+    /** Socket配置 */
+    export interface ISocket {
+      redis: IRedis;
+      [key: string]: any;
+    }
+
+    interface XiosOptions {
+      /** 请求基础路径 */
+      baseUrl: string;
+      /** 通用请求头 */
+      headers?: any;
+    }
+    /** xios配置 */
+    export interface IXios {
+      [key: string]: XiosOptions
+    }
+  }
+
   /** redis连接 */
   interface IRedis {
     /** 设置字符串 */
@@ -35,7 +83,7 @@ declare module 'xioo' {
     }
   }
   type CostomCtx = Koa.DefaultContext & CostomC
-  
+
   export interface IService {
     app: App;
     ctx: CostomCtx;
@@ -59,16 +107,16 @@ declare module 'xioo' {
 
   interface IHelper {
     /** 获取某个目录下的所有文件路径映射 */
-    dirTreePath(rootDir: string, exclude?: string[], includeFiles?: {[key: number]: string | RegExp}): {[key: string]: string};
+    dirTreePath(rootDir: string, exclude?: string[], includeFiles?: { [key: number]: string | RegExp }): { [key: string]: string };
     /** 获取某个目录的所有文件资源映射 */
-    dirTreeSource(rootDir: string, exclude?: string[]): {[key: string]: any};
+    dirTreeSource(rootDir: string, exclude?: string[]): { [key: string]: any };
   }
 
   interface ITask {
     status: boolean;
     task: cornApp.ScheduledTask
   }
-  
+
   interface ISchedules {
     [key: string]: ITask
   }
@@ -105,7 +153,7 @@ declare module 'xioo' {
     plugins: IPlugin;
   }
 
-  export interface IPlugin {}
+  export interface IPlugin { }
 
   export class Plugin {
     app: App;
@@ -122,9 +170,9 @@ declare module 'xioo' {
     /** 请求方法 */
     method?: 'get' | 'post' | 'delete' | 'option' | 'patch' | 'put' | 'head';
     /** 请求头 */
-    headers?: {[key:string]: any};
+    headers?: { [key: string]: any };
     /** 请求体 */
-    data?: {[key:string]: any};
+    data?: { [key: string]: any };
     /** 获取的数据类型 默认utf-8 */
     encoding?: string;
     /** 路径参数 */
@@ -132,7 +180,7 @@ declare module 'xioo' {
   }
 
   export class Xioos {
-    constructor({baseUrl, headers}: IXiooProps)
+    constructor({ baseUrl, headers }: IXiooProps)
     get: <T>(url: string, options?: IOption) => Promise<T>;
     /** post请求方法 */
     post: <T>(url: string, options?: IOption) => Promise<T>;
@@ -155,7 +203,7 @@ declare module 'xioo' {
     /** 基础配置 */
     config: any;
     /** 请求器 */
-    xios: {[key: string]: Xioos};
+    xios: { [key: string]: Xioos };
     /** 控制器 */
     controller: ControllerManager;
     /** 服务器 */
@@ -184,8 +232,8 @@ declare module 'xioo' {
   }
 
   export class Schedule {
-    static ScheduleComponent(status: boolean):(constrcutor: any) => void;
-    static Task(props: ITaskProps):(target: any, controllerName: string, descriptor: any) => void;
+    static ScheduleComponent(status: boolean): (constrcutor: any) => void;
+    static Task(props: ITaskProps): (target: any, controllerName: string, descriptor: any) => void;
 
     app: App;
   }
@@ -198,13 +246,13 @@ declare module 'xioo' {
 
   export class ControllerManager extends Controller {
     /** controller组 */
-    group: {[key:string]: any};
+    group: { [key: string]: any };
     /** 注册路由类 */
     registerController: (name: string, CntrollerInstance: any) => void;
   }
 
   export const Route;
-  
+
   export const Post;
 
   export const Get;
@@ -226,6 +274,6 @@ declare module 'xioo' {
   }
 
   export const Socket;
-  
+
   export default App;
 }

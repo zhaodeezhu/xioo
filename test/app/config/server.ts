@@ -6,50 +6,10 @@
  * @LastEditors: dee
  * @LastEditTime: 2021-01-19 19:51:46
  */
+import { XiooConfig } from 'xioo';
 
-/** 数据服务的基础配置 */
-interface IModelSQL {
-  /** 端口号 默认80 */
-  port?: number;
-  /** 地址 */
-  host: string;
-  /** 密码 */
-  password?: string;
-  /** 是否启动 */
-  launch?: boolean;
-}
-
-/** MySQL */
-interface IMySQL extends IModelSQL {
-  user: string;
-  database?: string;
-}
-
-/** Redis */
-interface IRedis extends IModelSQL {
-  /** 数据库号 */
-  db?: number;
-}
-
-/** http服务配置 */
-interface IHtppServer {
-  port: number;
-}
-
-interface IConfig {
-  /** redis配置 */
-  redis: IRedis[];
-  /** http服务配置 */
-  httpServer: IHtppServer;
-}
-
-interface ISocket {
-  redis: IRedis;
-  [key: string]: any;
-}
-
-export = class Config implements IConfig {
-  redis: IRedis[] = [
+export default class Config {
+  redis: XiooConfig.IRedis[] = [
     // {
     //   port: 6379,
     //   host: 'redis-dev001.gz.cvte.cn',
@@ -62,7 +22,7 @@ export = class Config implements IConfig {
       launch: false
     }
   ];
-  mysql: IMySQL[] = [
+  mysql: XiooConfig.IMySQL[] = [
     {
       port: 3306,
       host: '119.29.143.189',
@@ -72,11 +32,11 @@ export = class Config implements IConfig {
       launch: false
     }
   ]
-  httpServer: IHtppServer = {
+  httpServer: XiooConfig.IHtppServer = {
     port: 2001
   };
   /** socket配置 */
-  socket: ISocket =  {
+  socket: XiooConfig.ISocket =  {
     redis: {
       port: 6379,
       host: '127.0.0.1',
@@ -85,7 +45,7 @@ export = class Config implements IConfig {
     launch: false
   };
   /** 请求实例列表 */
-  xios = {
+  xios: XiooConfig.IXios  = {
     wx: {
       baseUrl: 'https://api.weixin.qq.com'
     },

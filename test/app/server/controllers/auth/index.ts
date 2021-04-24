@@ -45,6 +45,15 @@ export default class Auth extends Controller {
       data: 'ok'
     }
   }
+
+  @Get('/pg')
+  async testPg() {
+    const { app: { pg } } = this;
+
+    let res = await pg.query<any[]>('select * from mpuser');
+
+    return res;
+  }
 }
 
 // export = Auth;

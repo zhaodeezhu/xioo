@@ -13,6 +13,7 @@ import Router from "../Router/RouterManager";
 import Controller from "../Controller";
 import ControllerManager from '../Controller/ControllerManager';
 import Redis from '../Service/Redis';
+import PostgreSQL from '../Service/PostgreSQL';
 import ServiceConstructor from "../Service/Constructor";
 import MiddlewareConstructor from "../Middleware/Constructor";
 import SocketManger from '../Socket/SocketManger';
@@ -51,6 +52,8 @@ class App {
   xios: any = {};
   /** 第一个Redis连接 */
   redis: Redis;
+  /** 第一个pg连接 */
+  pg: PostgreSQL;
   /** 进程管理调度器 */
   agant: Agant = new Agant(this);
   /** ctx上下文 */
@@ -70,6 +73,7 @@ class App {
       this.socket = new SocketManger(this);
     }
     this.redis = this.service.redis;
+    this.pg = this.service.pg;
 
     this.createXioosRequest();
     // 注册插件，这个一定要在所有的服务都启动了以后注册

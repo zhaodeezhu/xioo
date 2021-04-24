@@ -35,6 +35,20 @@ declare module 'xioo' {
       database?: string;
     }
 
+    /** pg */
+    export interface IPgSQL extends IModelSQL {
+      /** 用户 */
+      user: string;
+      /** 数据库 */
+      database: string;
+      /** 最大空闲时间 ms */
+      idleTimeoutMillis?: number;
+      /** 连接池最大连接数, 默认10 */
+      max?: number;
+      /** 连接超时时间 ms */
+      connectionTimeoutMillis?: number;
+    }
+
     /** http服务配置 */
     export interface IHtppServer {
       port: number;
@@ -72,6 +86,11 @@ declare module 'xioo' {
     dbquery: (sql: string) => Promise<any[]>;
   }
 
+  interface IPgSQL {
+    /** 查询 */
+    query: <T>(sql: string) => Promise<T>;
+  }
+
   type CostomC = {
     state: {
       /** 响应数据 */
@@ -96,12 +115,14 @@ declare module 'xioo' {
     redisGroup: IRedis[];
     /** mysql连接组 */
     mysqlGroup: IMySQL[];
+    /** pg连接组 */
+    pgGroup: IPgSQL[];
     /** 第一个redis连接 */
     redis: IRedis;
     /** 第一个mysql连接 */
     mysql: IMySQL;
-    aaa: any;
-    bbb: any;
+    /** 第一个pg */
+    pg: IPgSQL;
   }
 
 
@@ -214,6 +235,8 @@ declare module 'xioo' {
     redis: IRedis;
     /** 第一个mysql连接 */
     mysql: IMySQL;
+    /** 第一pg连接 */
+    pg: IPgSQL;
     /** 插件 */
     plugin: IPluginManager;
     /** 进程控制器 */

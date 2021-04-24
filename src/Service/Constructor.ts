@@ -10,6 +10,7 @@ import * as path from 'path';
 import App from  '../App';
 import Redis from './Redis';
 import Mysql from './MySQL';
+import PostgreSQL from './PostgreSQL';
 import Service from './index';
 
 const ModelLsit = {
@@ -20,6 +21,10 @@ const ModelLsit = {
   mysql: {
     group: 'mysqlGroup',
     TypeModel: Mysql,
+  },
+  pg: {
+    group: 'pgGroup',
+    TypeModel: PostgreSQL,
   }
 }
 
@@ -28,11 +33,15 @@ class ServiceConstructor extends Service {
   redisGroup: Redis[] = [];
   /** mysql连接组 */
   mysqlGroup: Mysql[] = [];
+  /** pg连接组 */
+  pgGroup: PostgreSQL[] = [];
 
   /** 第一个redis */
   redis: Redis;
   /** 第一个mysql */
   mysql: Mysql;
+  /** 第一个pg */
+  pg: PostgreSQL;
 
   constructor(app: App) {
     super(app);
@@ -41,12 +50,14 @@ class ServiceConstructor extends Service {
     this.createConnectGroup<Mysql>('mysql');
     /** 创建redis连接 */
     this.createConnectGroup<Redis>('redis');
+    /** 创建pg连接 */
+    this.createConnectGroup<PostgreSQL>('pg');
     /** 读取service信息 */
     this.readService();
   }
 
   /** 创建连接分组 */
-  private createConnectGroup<T>(modelName: 'redis' | 'mysql') {
+  private createConnectGroup<T>(modelName: 'redis' | 'mysql' | 'pg') {
     this[ModelLsit[modelName].group] = (this.app.config[modelName] as any[]).map(item => {
       return new ModelLsit[modelName].TypeModel(item)
     });

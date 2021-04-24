@@ -54,4 +54,14 @@ export default class Config {
     }
   };
 
+  pg: XiooConfig.IPgSQL[] = [
+    {
+      port: 5432,
+      host: '127.0.0.1',
+      password: '123456',
+      user: 'postgres',
+      database: 'mytest',
+      launch: false
+    }
+  ]
 };

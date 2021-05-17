@@ -13,6 +13,8 @@ import Agant from './Agant/AgantManager';
 export { Get, Patch, Post, Delete, Route } from './Router/structure';
 /** 导出中间件相关 */
 export { MiddleClass, Middle } from './Middleware/structure';
+/** 导出装饰器 */
+export { Time } from './Decorator';
 
 /** 导出控制器和中间件 */
 export { Controller, Middleware, Service, Plugin };

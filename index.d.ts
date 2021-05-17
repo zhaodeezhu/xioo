@@ -282,6 +282,8 @@ declare module 'xioo' {
 
   export const Helper;
 
+  export const Time;
+
   export class Middleware {
     app: App;
     ctx: CostomCtx;

@@ -1,5 +1,6 @@
 import { Post, Route, Controller, Get } from 'xioo'; 
 import * as path from 'path';
+import { Time } from 'xioo';
 
 new RegExp(/[a-z]+\.less/)
 
@@ -46,13 +47,20 @@ export default class Auth extends Controller {
     }
   }
 
+  @Time((time, that) => { console.log(time);console.log(that.app) })
   @Get('/pg')
   async testPg() {
     const { app: { pg } } = this;
+    // console.log(app);
 
-    let res = await pg.query<any[]>('select * from mpuser');
+    // let res = await pg.query<any[]>('select * from mpuser');
+    // const res = 'aaaa';
+    let i = 0;
+    for (let index = 0; index < 10000; index++) {
+      i++;
+    }
 
-    return res;
+    return i;
   }
 }
 

@@ -1,15 +1,26 @@
 import * as path from 'path';
 import RouterApp from 'koa-router';
-import {routerList, controlllerList, IMethod, methods} from './structure';
+import { routerList, controlllerList, IMethod, methods } from './structure';
 
 
 import App from '../App';
+
+interface IRoute {
+  /** 方法 */
+  method: 'get' | 'post' | 'delete' | 'patch';
+  /** url */
+  url: 'string';
+  /** controller */
+  controller: (ctx?: any, next?: any) => void;
+}
 
 const router = new RouterApp();
 
 class Router {
   /** 全局app上下文 */
   app: App;
+  /** 路由实例 */
+  route: RouterApp = router;
 
   constructor(app: App) {
     this.app = app;
@@ -25,33 +36,33 @@ class Router {
   /** 写入controller信息 */
   start() {
     routerList.forEach(item => {
-      const {basepath, Constrcutor} = item;
+      const { basepath, Constrcutor } = item;
       const RouterController = new Constrcutor(this.app);
       // 注册controller
       this.app.controller.registerController(Constrcutor.name, RouterController);
       controlllerList
-      .filter(controller => Constrcutor.prototype === controller.target)
-      .forEach(route => {
-        let url: any;
-        if(route.path instanceof RegExp) {
-          url = route.path
-        } else {
-          url = path.join(basepath, route.path);
-        }
-        router[route.method as IMethod](url, async (ctx, next) => {
-          function ControllerPrototype() { this.ctx = null; this.next = null}
-          ControllerPrototype.prototype = RouterController;
-          const Controller = new ControllerPrototype();
-          Controller.ctx = ctx;
-          Controller.next = next;
-          const res = await RouterController[route.controllerName].call(Controller)
-          if(!res) {
-            // await next();
+        .filter(controller => Constrcutor.prototype === controller.target)
+        .forEach(route => {
+          let url: any;
+          if (route.path instanceof RegExp) {
+            url = route.path
           } else {
-            ctx.state.data = res;
+            url = path.join(basepath, route.path);
           }
+          router[route.method as IMethod](url, async (ctx, next) => {
+            function ControllerPrototype() { this.ctx = null; this.next = null }
+            ControllerPrototype.prototype = RouterController;
+            const Controller = new ControllerPrototype();
+            Controller.ctx = ctx;
+            Controller.next = next;
+            const res = await RouterController[route.controllerName].call(Controller)
+            if (!res) {
+              // await next();
+            } else {
+              ctx.state.data = res;
+            }
+          });
         });
-      });
     });
     this.readLess();
   }
@@ -85,6 +96,11 @@ class Router {
         });
       });
     });
+  }
+
+  /** 运行时注册路由信息 */
+  setRoute({ method, url, controller }: IRoute) {
+    this.route[method](url, controller);
   }
 }
 

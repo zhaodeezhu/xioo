@@ -243,6 +243,21 @@ declare module 'xioo' {
     agant: any;
     /** 动态设置请求对象 */
     setXioosByConfig: (xioosConfig: any) => void;
+    /** 路由 */
+    router: RouterManager
+  }
+
+  class RouterManager {
+    setRoute: (routes: IRoutes) => void;
+  }
+
+  interface IRoutes {
+    /** 请求路径 */
+    url: string;
+    /** 请求方法 */
+    method: 'get' | 'post' | 'delete' | 'option' | 'patch' | 'put' | 'head';
+    /** controller */
+    controller: (ctx: CostomCtx, next: () => void) => any;
   }
 
   interface ITaskProps {

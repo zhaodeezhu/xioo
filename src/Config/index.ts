@@ -70,8 +70,8 @@ class Config {
   socketConfig: ISocket;
   xios: any;
   /** 其他的配置 */
-  other: any;
-  
+  rests: { [key: string]: any };
+
   constructor(app: App) {
     this.app = app;
     this.readAllConfig();
@@ -84,7 +84,7 @@ class Config {
     // 服务端的配置
     const ServerConfig = new ServerConfigSource.server();
 
-    const {redis = [], httpServer, mysql = [], pg = [], socket, xios, ...props} = ServerConfig;
+    const { redis = [], httpServer, mysql = [], pg = [], socket, xios, ...props } = ServerConfig;
     this.redis = redis.filter(item => item.launch);
     this.http = httpServer;
     this.mysql = mysql.filter(item => item.launch);
@@ -92,7 +92,7 @@ class Config {
     this.socketConfig = socket;
     // 读取xioos配置数据
     this.xios = xios;
-    this.other = props;
+    this.rests = props;
   }
 }
 

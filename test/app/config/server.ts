@@ -63,5 +63,13 @@ export default class Config {
       database: 'mytest',
       launch: false
     }
-  ]
+  ];
+
+  /** 
+   * 开放的静态资源目录 使用的是koa-static 根目录当前项目的运行目录
+   * 数据格式可以为:
+   * 字符串 只开放一个目录
+   * 数组 开放多个目录
+   */
+  openResource = 'app/config'
 };

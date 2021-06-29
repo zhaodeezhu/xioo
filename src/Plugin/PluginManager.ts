@@ -1,11 +1,12 @@
 import App from '../App';
 import Plugin from './index';
 import * as path from 'path';
-
+import PluginInlays from './inlay';
 class PluginManager extends Plugin {
   constructor(app: App) {
     super(app);
     this.registerProjectPlugins();
+    this.setInlayPlugins();
   }
 
   /** 插件组 */
@@ -39,6 +40,13 @@ class PluginManager extends Plugin {
     const pluginName = pluginInstance.constructor.name;
 
     this.plugins[pluginName] = pluginInstance;
+  }
+
+  /** 注册内置插件 */
+  private setInlayPlugins() {
+    PluginInlays.forEach(item => {
+      this.writePlugin(item);
+    })
   }
 }
 

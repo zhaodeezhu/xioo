@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.0.59](https://github.com/zhaodeezhu/xioo/compare/v0.0.58...v0.0.59) (2021-07-01)
+
+
+### Features
+
+* 🚀 Add router set ([1ad52d0](https://github.com/zhaodeezhu/xioo/commit/1ad52d0c43b0df6cdafac66db0335cf03ac1ce72))
+* 🚀 Add static resource config ([e8b0e4a](https://github.com/zhaodeezhu/xioo/commit/e8b0e4a7c70cb21c6f4bf255f14fbe739694c920))
+* 🚀 Add time decorator ([06c646d](https://github.com/zhaodeezhu/xioo/commit/06c646d9498574c265753fe355842986599a9b64))
+
+
+### Bug Fixes
+
+* 🐛 update static resource ([505a509](https://github.com/zhaodeezhu/xioo/commit/505a509dc032883fa646017b1826f6bd054f2eac))
+
 ### [0.0.58](https://github.com/zhaodeezhu/xioo/compare/v0.0.57...v0.0.58) (2021-04-24)
 
 

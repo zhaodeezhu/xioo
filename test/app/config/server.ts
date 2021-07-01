@@ -71,5 +71,12 @@ export default class Config {
    * 字符串 只开放一个目录
    * 数组 开放多个目录
    */
-  openResource = 'app/config'
+  openResource = [
+    {
+      openPath: 'app/pages',
+      options: {
+        maxAge: 60 * 60 * 1000 * 2 
+      }
+    }
+  ]
 };
